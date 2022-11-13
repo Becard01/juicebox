@@ -50,7 +50,7 @@ async function getAllUsers() {
     throw error
    }
 }
-//**** */
+
 async function getUserById(userId){
     try{
         const { rows } = await client.query(`
@@ -117,7 +117,7 @@ async function updatePost (postId, fields = {}) {
     if (tags === undefined) {
         return await getPostById(postId);
     }
-    
+
     const tagList = await createTags(tags);
     const tagListIdString = tagList.map(
         tag => `${ tag.id }`
@@ -139,7 +139,7 @@ async function updatePost (postId, fields = {}) {
     }
 }
 
-//**** */
+
 async function getAllPosts() {
   try{
     const { rows: postIds } = await client.query(`

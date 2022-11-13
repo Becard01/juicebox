@@ -30,7 +30,7 @@ async function dropTables() {
 }
 
 
-//**** */
+
 async function createTables(){
     try{
         console.log("Starting to build tables...")
@@ -66,7 +66,7 @@ async function createTables(){
         throw error;
     }
 }
-//*** */
+
 async function createInitialUsers() {
     try {
         console.log("Starting to create users...");
@@ -88,7 +88,7 @@ async function createInitialUsers() {
         throw error;
     }
 }
-//***** */
+
 async function createInitialPosts() {
     
         try{

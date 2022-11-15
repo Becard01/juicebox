@@ -56,9 +56,11 @@ async function createTables(){
             name varchar(255) NOT NULL
         );
         CREATE TABLE post_tags (
-            "postId" INTEGER REFERENCES posts(id) UNIQUE,
-            "tagId" INTEGER REFERENCES tags(id) UNIQUE
-            );
+            "postId" INTEGER REFERENCES posts(id),
+            "tagId" INTEGER REFERENCES tags(id),
+            UNIQUE("postId", "tagId")
+        );
+            
  `);
  console.log("Finished building tables!")
     } catch (error){
@@ -80,7 +82,7 @@ async function createInitialUsers() {
         const glamgal = await createUser({ username: 'glamgal',
         password: 'soglam', name: 'Gal', location: 'New York'});
 
-        console.log(albert, sandra, glamgal);
+        console.log("***************88888888", albert, sandra, glamgal)
 
         console.log("Finished creating users!")
     } catch(error){
@@ -95,28 +97,32 @@ async function createInitialPosts() {
 
         const [albert, sandra, glamgal] = await getAllUsers();
 
+       console.log
+
         console.log("Starting to create initial posts...")
         
         await createPost({
             authorId: albert.id,
-            title: 'First Post',
-            content: 'This is my first post. I hope I love writing blogs as mush as I love writing them.',
+            title: "First Post",
+            content: "This is my first post. I hope I love writing blogs as mush as I love writing them.",
             tags: ['#happy', '#youcandoanything']
             });
+
+            await createPost({
+                authorId: sandra.id,
+                title: "My Very Own Post",
+                content: "I like to post a lot, so get ready World.",
+                tags: ["#happy", "#worst-day-ever"]
+                });
+             
+            await createPost({
+                authorId: glamgal.id,
+                title: "Wheres the closest McDonalds?",
+                content: "I'm getting hungry.  No time for posting.",
+                tags: ["#happy", "#youcandoanything", "catmandoeverything"]
+                });
         
-        await createPost({
-            authorId: sandra.id,
-            title: "My Very Own Post",
-            content: 'I like to post a lot, so get ready World.',
-            tags: ["#happy", "#worst-day-ever"]
-            });
-         
-        await createPost({
-            authorId: glamgal.id,
-            title: "Wheres the closest McDonalds?",
-            content: "I'm getting hungry.  No time for posting.",
-            tags: ["#happy", "#youcandoanything", "catmandoeverything"]
-            });
+       
             console.log("Initial Posts Created!")
         } catch (error) {
             console.log("Error creating initial posts")

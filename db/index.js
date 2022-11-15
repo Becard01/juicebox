@@ -12,6 +12,7 @@ async function createUser({ username, password, name, location }) {
         `, [username, password, name, location]);
         return user
     }catch (error) {
+        console.log ("Error in createUser function")
         throw error;
     }
 }
@@ -35,6 +36,7 @@ async function updateUser (id, fields ={}) {
 
         return user;
     } catch (error) {
+        console.log ("Error in updateUser function")
         throw error;
     }
 }
@@ -48,6 +50,7 @@ async function getAllUsers() {
     
     return rows;
    } catch (error){
+    console.log ("Error in getAllUsers function")
     throw error
    }
 }
@@ -68,6 +71,7 @@ async function getUserById(userId){
         return rows;
      }
     } catch (error) {
+        console.log ("Error in getUserById function")
         throw error;
     }
 }
@@ -87,6 +91,7 @@ async function createPost({ authorId, title, content, tags = []}) {
 
         return await addTagsToPost(post.id, tagList);
     }catch (error) {
+        console.log ("Error in createPost function")
         throw error;
     }
 }
@@ -136,6 +141,7 @@ async function updatePost (postId, fields = {}) {
     return await getPostById(postId);
 
     } catch (error) {
+        console.log ("Error in updatePost function")
         throw error;
     }
 }
@@ -154,6 +160,7 @@ async function getAllPosts() {
     
     return posts;
 } catch (error) {
+    console.log ("Error in getAllPosts function")
     throw error;
 }
 }
@@ -173,6 +180,7 @@ async function getPostsByUser(userId) {
     
     return posts;
     } catch (error) {
+        console.log ("Error in getPostsByUser function")
         throw error;
     }
 }
@@ -193,6 +201,7 @@ async function getPostsByTagName(tagName) {
             post => getPostById(post.id)
         ));
     }catch (error) {
+        console.log ("Error in getPostsByTagName function")
         throw error;
     }
 }
@@ -213,6 +222,7 @@ async function createTags(tagList) {
         `, Object.values(tagList));
         
     }catch (error) {
+        console.log ("Error in createTags/insertValues function")
         throw error;
     }
     const selectValues = tagList.map(
@@ -230,6 +240,7 @@ async function createTags(tagList) {
               console.log ("Selected Tags", rows)
               return rows
           }catch (error) {
+            console.log ("Error in createTags/selectValues function")
               throw error;
           }
 }
@@ -244,7 +255,7 @@ async function createPostTag(postId, tagId) {
         `, [postId, tagId]);
         
     }catch (error) {
-        console.log ("error creating Post Tags")
+        console.log ("error createPostTag function")
         throw error;
     }
 }
@@ -262,7 +273,7 @@ async function addTagsToPost(postId, tagList) {
         return await getPostById(postId);
 
         } catch (error) {
-        
+            console.log ("Error in addTagsToPost function")
         throw error;
     }
 }
@@ -303,6 +314,7 @@ async function getPostById (postId) {
        
         return post;
     } catch (error) {
+        console.log ("Error in getPostById function")
         throw error;
     }
 }

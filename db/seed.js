@@ -53,7 +53,7 @@ async function createTables(){
         );
         CREATE TABLE tags (
             id SERIAL PRIMARY KEY,
-            name varchar(255) NOT NULL
+            name varchar(255) NOT NULL UNIQUE
         );
         CREATE TABLE post_tags (
             "postId" INTEGER REFERENCES posts(id),

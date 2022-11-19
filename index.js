@@ -1,5 +1,7 @@
 const {client} = require('./db');
+require('dotenv').config();
 const express = require('express');
+
 
 client.connect();
 

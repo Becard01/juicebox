@@ -317,10 +317,10 @@ async function getPostById (postId) {
 
         console.log ("getPostById post", post)
         if (!post) {
-            throw {
-              name: "PostNotFoundError",
-              message: "Could not find a post with that postId"
-            };
+            console.log (
+              name, "PostNotFoundError",
+              message, "Could not find a post with that postId"
+            );
           }
         
         const { rows: tags } = await client.query(`
